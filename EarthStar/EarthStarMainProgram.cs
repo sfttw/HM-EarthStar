@@ -23,6 +23,29 @@ namespace EarthStar
             Application.Run(new EarthStarForm());
         }
 
+        public static string GetHostName(string ipAddress)
+        {
+            try
+            {
+                IPHostEntry entry = Dns.GetHostEntry(ipAddress);
+                if (entry != null)
+                {
+                    string hostName = entry.HostName;
+                    string[] split = hostName.Split('.');
+
+                    return split[0];
+                }
+            }
+            catch (SocketException ex)
+            {
+                //unknown host or
+                //not every IP has a name
+                //log exception (manage it)
+            }
+
+            return null;
+        }
+
         public static IPAddress GetBroadcastAddress(this IPAddress address, IPAddress subnetMask)
         {
             byte[] ipAdressBytes = address.GetAddressBytes();

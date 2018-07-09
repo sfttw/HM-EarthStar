@@ -52,6 +52,7 @@
             this.lb_items.FormattingEnabled = true;
             this.lb_items.Location = new System.Drawing.Point(12, 64);
             this.lb_items.Name = "lb_items";
+            this.lb_items.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lb_items.Size = new System.Drawing.Size(356, 212);
             this.lb_items.TabIndex = 2;
             // 
@@ -89,7 +90,7 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // EarthStarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,7 +101,7 @@
             this.Controls.Add(this.lb_items);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "EarthStarForm";
             this.Text = "HM | EarthStar";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

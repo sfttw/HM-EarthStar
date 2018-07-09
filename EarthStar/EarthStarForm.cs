@@ -33,7 +33,16 @@ namespace EarthStar
                     string currentIP = IPMacMapper.FindIPFromMacAddress(currentMAC);
 
                     if (currentIP.Length > 0)
-                        lb_items.Items.Add(currentIP);
+                    {
+                        // Get the hostName
+                        string hostName = GetHostName(currentIP);
+
+                        if (hostName != null)
+                            lb_items.Items.Add(hostName + " (" + currentIP + ")");
+                        else
+                            lb_items.Items.Add(currentIP);
+                    }
+                        
                 }
                 catch
                 {
@@ -61,8 +70,22 @@ namespace EarthStar
             {
                 try
                 {
-                    string macAddress = IPMacMapper.FindMacFromIPAddress(item.ToString());
-                    WakeOnLan.WakeUp(macAddress, item.ToString(), "255.255.255.255");
+                    string[] split = item.ToString().Split(' ');
+
+                    string ipAddress;
+
+                    if (split.Length > 1)
+                    {
+                        ipAddress = split[1].Replace("(", "").Replace(")", "");
+                    }
+                    else
+                    {
+                        ipAddress = split[0];
+                    }
+
+                    string macAddress = IPMacMapper.FindMacFromIPAddress(ipAddress);
+
+                    WakeOnLan.WakeUp(macAddress, ipAddress, "255.255.255.255");
                 }
                 catch
                 {
